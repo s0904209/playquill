@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>this is basic example test</title>
+    <link rel="stylesheet" href="https://cdn.quilljs.com/0.20.1/quill.snow.css" />
+<head>
+<body>
+    <!-- Create the toolbar container -->
+    <div id="basic-toolbar">
+
+      <select title="Size" class="ql-size">
+        <option value="10px">Small</option>
+        <option value="13px" selected="">Normal</option>
+        <option value="18px">Large</option>
+        <option value="32px">Huge</option>
+      </select>
+      
+      <button class="ql-bold">Bold</button>
+      <button class="ql-italic">Italic</button>
+    </div>
+
+    <!-- Create the editor container -->
+    <div id="basic-editor">
+      <div>Hello World!</div>
+      <div>Some initial <b>bold</b> text</div>
+      <div><br></div>
+    </div>
+
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/0.20.1/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
+    <script>
+      // var quill = new Quill('#editor');
+      // quill.addModule('toolbar', { container: '#toolbar' });
+      var basicEditor = new Quill('#basic-editor', { theme: 'snow' });
+      basicEditor.addModule('toolbar', {
+          container: '#basic-toolbar'
+      });
+    </script>
+
+    <script>
+      basicEditor.on('text-change', function(delta, source) {
+        console.log('Editor contents have changed', delta);
+        console.log('[allen]HTML='+basicEditor.getHTML());
+      });
+
+      basicEditor.insertText(11, ' Bilbo');
+      console.log(basicEditor.getText());   // Should output "Hello World Bilbo!\nSome initial bold text";
+</script>
+</body>
+</html>
